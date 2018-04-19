@@ -1,0 +1,25 @@
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var myLable: UILabel!
+    @IBOutlet weak var myPicker: UIPickerView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        //viewController와 delegate 연결
+        myPicker.delegate = self as? UIPickerViewDelegate
+        myPicker.dataSource = self as? UIPickerViewDataSource
+    }
+
+    func pickerView(_pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        if component == 0 {
+            return 10
+        }else{
+                return 50
+        }
+    }
+    func pickerView(_pickerView:UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        myLable.text = "comp = \(component) row = \(row) "
+    }
+}
